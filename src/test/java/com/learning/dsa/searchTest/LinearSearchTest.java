@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import com.learning.dsa.search.LinearSearch;
 import com.learning.dsa.search.SearchAlgorithm;
 
 public class LinearSearchTest {

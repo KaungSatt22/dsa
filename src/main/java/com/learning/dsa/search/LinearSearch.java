@@ -1,6 +1,4 @@
-package com.learning.dsa.searchTest;
-
-import com.learning.dsa.search.SearchAlgorithm;
+package com.learning.dsa.search;
 
 public class LinearSearch implements SearchAlgorithm {
 
