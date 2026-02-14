@@ -1,10 +1,10 @@
-package com.learning.dsa.transformTest;
+package com.learning.dsa.algorithm;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import com.learning.dsa.transform.Transform;
+import com.learning.dsa.algorithm.Transform;
 
 public class TransformTest {
 	

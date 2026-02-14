@@ -1,4 +1,4 @@
-package com.learning.dsa.transform;
+package com.learning.dsa.algorithm;
 
 public class Transform {
 
