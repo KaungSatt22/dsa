@@ -1,6 +1,4 @@
-package com.learning.dsa.ds;
-
-import com.learning.dsa.sort.SortAlgorithm;
+package com.learning.dsa.sort;
 
 public class MergeSort implements SortAlgorithm{
 	

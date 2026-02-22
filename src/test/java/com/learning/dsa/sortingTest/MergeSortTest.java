@@ -5,8 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import com.learning.dsa.ds.MergeSort;
-
+import com.learning.dsa.sort.MergeSort;
 import com.learning.dsa.sort.SortUtils;
 
 public class MergeSortTest {
