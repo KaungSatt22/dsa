@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Stack;
 
 public class BinarySearchTree {
 	
@@ -156,6 +157,56 @@ public class BinarySearchTree {
 		@Override
 		public BNode next() {
 			return travesaledList.remove(0);
+		}
+		
+	}
+	
+	public Iterator<BNode> preorderIterative(){
+		return new PreOrderIterative();
+	}
+	
+	class PreOrderIterative implements Iterator<BNode>{
+		
+		public PreOrderIterative() {
+			travesal(root);
+		}
+		
+		List<BNode> visited = new ArrayList<>();
+		Stack<BNode> stack = new Stack<>();
+		
+		public void travesal(BNode node) {
+			while(node!= null) {
+				visited.add(node);
+				stack.add(node);
+				if(node.left != null) {
+					node = node.left;
+				}else if(node.right != null) {
+					node = node.right;
+				}else {
+					if(stack.isEmpty() && node.isLeaf()) {
+						node = null;
+					}
+					while(!stack.isEmpty()) {
+						BNode popNode = stack.pop();
+						if(popNode.right != null) {
+							node = popNode.right;
+							break;
+						}
+					}
+				}
+				
+				
+			}
+		}
+
+		@Override
+		public boolean hasNext() {
+			return !visited.isEmpty();
+		}
+
+		@Override
+		public BNode next() {
+			return visited.remove(0);
 		}
 		
 	}
