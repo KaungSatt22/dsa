@@ -175,27 +175,18 @@ public class BinarySearchTree {
 		Stack<BNode> stack = new Stack<>();
 		
 		public void travesal(BNode node) {
-			while(node!= null) {
-				visited.add(node);
-				stack.add(node);
-				if(node.left != null) {
-					node = node.left;
-				}else if(node.right != null) {
-					node = node.right;
-				}else {
-					if(stack.isEmpty() && node.isLeaf()) {
-						node = null;
-					}
-					while(!stack.isEmpty()) {
-						BNode popNode = stack.pop();
-						if(popNode.right != null) {
-							node = popNode.right;
-							break;
-						}
-					}
+			stack.push(node);
+			while(!stack.isEmpty()) {
+				
+				BNode popNode = stack.pop();
+				visited.add(popNode);
+				
+				if(popNode.right != null) {
+					stack.push(popNode.right);
+				} 
+				if (popNode.left != null) {
+					stack.push(popNode.left);
 				}
-				
-				
 			}
 		}
 
@@ -211,5 +202,45 @@ public class BinarySearchTree {
 		
 	}
 	
+	public Iterator<BNode> inorderIterative(){
+		return new InorderIterative();
+	}
+	
+	class InorderIterative implements Iterator<BNode>{
+		
+		List<BNode> visited = new ArrayList<>();
+		Stack<BNode> stack = new Stack<>();
+		
+		public InorderIterative() {
+			travesal(root);
+		}
+		
+		void travesal(BNode node) {
+			BNode current = node;
+			while(current != null || !stack.isEmpty()) {
+				
+				while(current != null) {
+					stack.push(current);
+					current = current.left;
+				}
+				
+				current = stack.pop();
+				visited.add(current);
+				
+				current = current.right;
+			}
+		}
+
+		@Override
+		public boolean hasNext() {
+			return !visited.isEmpty();
+		}
+
+		@Override
+		public BNode next() {
+			return visited.remove(0);
+		}
+		
+	}
 	
 }
