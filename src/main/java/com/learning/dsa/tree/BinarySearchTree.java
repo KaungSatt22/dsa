@@ -243,4 +243,52 @@ public class BinarySearchTree {
 		
 	}
 	
+	public Iterator<BNode> postIterative(){
+		return new PostorderIterative();
+	}
+	
+	class PostorderIterative implements Iterator<BNode> {
+
+	    List<BNode> visited = new ArrayList<>();
+
+	    public PostorderIterative() {
+	        travesal(root);
+	    }
+
+	    void travesal(BNode node) {
+	        if (node == null) return;
+
+	        Stack<BNode> s1 = new Stack<>();
+	        Stack<BNode> s2 = new Stack<>();
+
+	        s1.push(node);
+
+	        while (!s1.isEmpty()) {
+	            BNode popNode = s1.pop();
+	            s2.push(popNode);
+
+	            if (popNode.left != null) {
+	                s1.push(popNode.left);
+	            }
+	            if (popNode.right != null) {
+	                s1.push(popNode.right);
+	            }
+	        }
+
+	        while (!s2.isEmpty()) {
+	            visited.add(s2.pop());
+	        }
+	    }
+
+	    @Override
+	    public boolean hasNext() {
+	        return !visited.isEmpty();
+	    }
+
+	    @Override
+	    public BNode next() {
+	        return visited.remove(0);
+	    }
+	}
+	
 }
