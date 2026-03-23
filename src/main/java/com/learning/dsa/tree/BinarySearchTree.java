@@ -291,4 +291,79 @@ public class BinarySearchTree {
 	    }
 	}
 	
+	public BNode searchNode(int value) {
+		BNode current = root;
+		while(current != null) {
+			if(current.value == value) {
+				return current;
+			}
+			if(current.value < value) {
+				current = current.right;
+			}else {
+				current = current.left;
+			}
+		}
+		return null;
+	}
+	
+	public int succorer(int value) {
+		BNode succorerNode = searchNode(value).right;
+		while(succorerNode.left != null) {
+			succorerNode = succorerNode.getLeft();
+		}
+		
+		return succorerNode.getValue();
+		
+	}
+	
+	public void delete(int value) {
+		BNode current = this.root;
+		BNode parent = null;
+		
+		while(current != null) {
+			if(current.value == value) {
+				
+				if(current.isLeaf()) {
+					if(current.value < parent.value) {
+						parent.left = null;
+					}else {
+						parent.right = null;
+					}
+				}
+				else if(current.isTwoChild()) {
+					int succorer = succorer(current.value);
+					delete(succorer);
+					current.value = succorer;
+				
+				}
+				else if(current.isOneChild()) {
+					int swapvalue = 0;
+					if(current.left != null) {
+						swapvalue = current.left.value;
+						delete(swapvalue);
+						current.value = swapvalue;
+						
+						
+						
+					}else {
+						swapvalue = current.right.value;
+						delete(swapvalue);
+						current.value = swapvalue;
+						
+						
+						
+					}
+				}
+			}
+			
+			if(current.value < value) {
+				parent = current;
+				current = current.right;
+			}else {
+				parent = current;
+				current = current.left;
+			}
+		}
+	}
+	
 }

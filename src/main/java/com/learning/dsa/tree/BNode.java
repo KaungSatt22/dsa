@@ -32,5 +32,22 @@ public class BNode {
 		return this.right == null && this.left == null;
 	}
 	
+	public int countChild() {
+		int count = 0;
+		if(left != null) {
+			count++;
+		}
+		if(right != null) {
+			count++;
+		}
+		return count;
+	}
 	
+	public boolean isOneChild() {
+		return countChild() == 1;
+	}
+	
+	public boolean isTwoChild() {
+		return countChild() == 2;
+	}
 }
